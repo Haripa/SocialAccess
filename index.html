@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html>
+<script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.4.8/angular.min.js"></script>
+<script src="bower_components/angularjs-social-login/angularjs-social-login.js"></script>
+<body>
+
+<div ng-app="myApp" ng-controller="myCtrl">
+
+First Name: <input type="text" ng-model="firstName"><br>
+Last Name: <input type="text" ng-model="lastName"><br>
+<br>
+Full Name: {{firstName + " " + lastName}}
+
+</div>
+<div>
+    <button g-login type="button">Google Login</button>
+    <button linked-in type="button">LinkedIn Login</button>
+    <button fb-login type="button">facebook Login</button>
+</div>
+
+<script>
+var app = angular.module('myApp', ['socialLogin']);
+app.controller('myCtrl', function ($scope, $rootScope) {
+    $scope.firstName = "John";
+    $scope.lastName = "Doe";
+
+    $rootScope.$on('event:social-sign-in-success', function (event, userDetails) {
+        if (userDetails) {
+            alert(JSON.stringify(userDetails));
+        }
+        else
+        {
+            alert("none");
+        }
+    });
+    $rootScope.$on('event:social-sign-out-success', function (event, logoutStatus) {
+
+    });
+});
+app.config(function (socialProvider) {
+    /*socialProvider.setGoogleKey("YOUR GOOGLE CLIENT ID");
+    socialProvider.setLinkedInKey("YOUR LINKEDIN CLIENT ID");*/
+    socialProvider.setFbKey({ appId: "1224850860958862", apiVersion: "v2.8" });
+});
+</script>
+
+</body>
+</html>
