@@ -1,27 +1,10 @@
 <!DOCTYPE html>
 <html>
-<script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.4.8/angular.min.js"></script>
-<script src="bower_components/angularjs-social-login/angularjs-social-login.js"></script>
+<head>
+    <title>Facebook Login JavaScript Example</title>
+    <meta charset="UTF-8">
+</head>
 <body>
-
-<div ng-app="myApp" ng-controller="myCtrl">
-
-First Name: <input type="text" ng-model="firstName"><br>
-Last Name: <input type="text" ng-model="lastName"><br>
-<br>
-Full Name: {{firstName + " " + lastName}}
-
-</div>
-<div>
-    <button g-login type="button">Google Login</button>
-    <button linked-in type="button">LinkedIn Login</button>
-    <button fb-login type="button">facebook Login</button>
-</div>
-    <div class="fb-like"
-         data-share="true"
-         data-width="450"
-         data-show-faces="true">
-    </div>
     <script>
         // This is called with the results from from FB.getLoginStatus().
         function statusChangeCallback(response) {
@@ -101,6 +84,7 @@ Full Name: {{firstName + " " + lastName}}
             });
         }
     </script>
+
     <!--
       Below we include the Login Button social plugin. This button uses
       the JavaScript SDK to present a graphical Login button that triggers
@@ -113,31 +97,17 @@ Full Name: {{firstName + " " + lastName}}
     <div id="status">
     </div>
 
-<script>
-var app = angular.module('myApp', ['socialLogin']);
-app.controller('myCtrl', function ($scope, $rootScope) {
-    $scope.firstName = "John";
-    $scope.lastName = "Doe";
-
-    $rootScope.$on('event:social-sign-in-success', function (event, userDetails) {
-        if (userDetails) {
-            alert(JSON.stringify(userDetails));
-        }
-        else
-        {
-            alert("none");
-        }
-    });
-    $rootScope.$on('event:social-sign-out-success', function (event, logoutStatus) {
-
-    });
-});
-app.config(function (socialProvider) {
-    /*socialProvider.setGoogleKey("YOUR GOOGLE CLIENT ID");
-    socialProvider.setLinkedInKey("YOUR LINKEDIN CLIENT ID");*/
-    socialProvider.setFbKey({ appId: "1224850860958862", apiVersion: "v2.8" });
-});
-</script>
-
 </body>
 </html>
+Now you can test your app by going to the URL where you uploaded this HTML. Open your JavaScript console, and you'll see the testAPI() function display a message with your name in the console log.
+
+Congratulations, at this stage you've actually built a really basic page with Facebook Login. You can use this as the starting point for your own app, but it will be useful to read on and understand what is happening in the code above.
+
+Additional Resources
+
+Login Dialog
+Facebook SDK for JavaScript Reference for FB.login()
+
+Login Button
+A simple way to trigger the Login Dialog.
+
