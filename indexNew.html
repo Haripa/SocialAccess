@@ -115,7 +115,7 @@
         <span><img id="img_profile"/></span>
         <a href="#" onclick="signOut();">Sign out</a>
     </div>
-
+    <iframe id="logoutframe" src="https://accounts.google.com/logout" style="display: none"></iframe>
     <script>
         document.getElementById('my-data').style.display = 'none';
         function onSignIn(googleUser) {
@@ -134,7 +134,7 @@
             var auth2 = gapi.auth2.getAuthInstance();
             auth2.signOut().then(function () {
                 console.log('User signed out.');
-                console.log("Retaining the session state : " + gapi.auth2.getAuthInstance().isSignedIn);
+                console.log("Retaining the session state : " + JSON.stringify(gapi.auth2.getAuthInstance().isSignedIn));
                 document.getElementById('my-data').style.display = 'none';
             });
             try
