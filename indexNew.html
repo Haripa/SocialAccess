@@ -85,12 +85,18 @@
                   'Thanks for logging in, ' + response.name + '!';
             });
         }
+        document.getElementById('my-data').style.display = 'none';
         function onSignIn(googleUser) {
+            document.getElementById('my-data').style.display = 'none';
             var profile = googleUser.getBasicProfile();
             console.log('ID: ' + profile.getId()); // Do not send to your backend! Use an ID token instead.
             console.log('Name: ' + profile.getName());
+            document.getElementById('gname').innerText = profile.getName();
             console.log('Image URL: ' + profile.getImageUrl());
+            document.getElementById('img_profile').src = profile.getImageUrl();
             console.log('Email: ' + profile.getEmail()); // This is null if the 'email' scope is not present.
+            document.getElementById('gemail').innerText = profile.getEmail();
+            document.getElementById('my-data').style.display = 'block';
         }
         function signOut() {
             var auth2 = gapi.auth2.getAuthInstance();
@@ -120,7 +126,14 @@
     <br />
     <div class="g-signin2" data-onsuccess="onSignIn"></div>
     <br />
-    <a href="#" onclick="signOut();">Sign out</a>
+    <div class="my-data">
+        <span>Name:</span><span id="gname"></span>
+        <span>Email:</span><span id="gemail"></span>
+        <span>Image:</span>
+        <span><img id="img_profile"/></span>
+        <a href="#" onclick="signOut();">Sign out</a>
+    </div>
+
     <script>
         
     </script>
