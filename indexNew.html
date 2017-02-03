@@ -134,7 +134,24 @@
             var auth2 = gapi.auth2.getAuthInstance();
             auth2.signOut().then(function () {
                 console.log('User signed out.');
+                document.getElementById('my-data').style.display = 'none';
             });
+            try
+            {
+                gapi.auth.signOut();
+            }
+            catch(eer1)
+            {
+                console.log("expe 1");
+            }
+            try
+            {
+                gapi.auth2.signOut();
+            }
+            catch (eer2)
+            {
+                console.log("expe 2");
+            }
         }
     </script>
 </body>
