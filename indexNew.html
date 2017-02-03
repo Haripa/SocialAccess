@@ -1,8 +1,10 @@
-<!DOCTYPE html>
+﻿<!DOCTYPE html>
 <html>
 <head>
-    <title>Facebook Login JavaScript Example</title>
+    <title>Social Login JavaScript Example</title>
+    <script src="https://apis.google.com/js/platform.js" async defer></script>
     <meta charset="UTF-8">
+    <meta name="google-signin-client_id" content="241738550013-ps95fel42bg5lf03ihcr2hcgq1uefov9.apps.googleusercontent.com">
 </head>
 <body>
     <script>
@@ -83,6 +85,19 @@
                   'Thanks for logging in, ' + response.name + '!';
             });
         }
+        function onSignIn(googleUser) {
+            var profile = googleUser.getBasicProfile();
+            console.log('ID: ' + profile.getId()); // Do not send to your backend! Use an ID token instead.
+            console.log('Name: ' + profile.getName());
+            console.log('Image URL: ' + profile.getImageUrl());
+            console.log('Email: ' + profile.getEmail()); // This is null if the 'email' scope is not present.
+        }
+        function signOut() {
+            var auth2 = gapi.auth2.getAuthInstance();
+            auth2.signOut().then(function () {
+                console.log('User signed out.');
+            });
+        }
     </script>
 
     <!--
@@ -101,18 +116,13 @@
 
     <div id="status">
     </div>
-
+    <br />
+    <br />
+    <div class="g-signin2" data-onsuccess="onSignIn"></div>
+    <br />
+    <a href="#" onclick="signOut();">Sign out</a>
+    <script>
+        
+    </script>
 </body>
 </html>
-Now you can test your app by going to the URL where you uploaded this HTML. Open your JavaScript console, and you'll see the testAPI() function display a message with your name in the console log.
-
-Congratulations, at this stage you've actually built a really basic page with Facebook Login. You can use this as the starting point for your own app, but it will be useful to read on and understand what is happening in the code above.
-
-Additional Resources
-
-Login Dialog
-Facebook SDK for JavaScript Reference for FB.login()
-
-Login Button
-A simple way to trigger the Login Dialog.
-
