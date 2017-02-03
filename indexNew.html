@@ -134,6 +134,7 @@
             var auth2 = gapi.auth2.getAuthInstance();
             auth2.signOut().then(function () {
                 console.log('User signed out.');
+                console.log("Retaining the session state : " + gapi.auth2.getAuthInstance().isSignedIn);
                 document.getElementById('my-data').style.display = 'none';
             });
             try
