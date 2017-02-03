@@ -85,25 +85,7 @@
                   'Thanks for logging in, ' + response.name + '!';
             });
         }
-        document.getElementById('my-data').style.display = 'none';
-        function onSignIn(googleUser) {
-            document.getElementById('my-data').style.display = 'none';
-            var profile = googleUser.getBasicProfile();
-            console.log('ID: ' + profile.getId()); // Do not send to your backend! Use an ID token instead.
-            console.log('Name: ' + profile.getName());
-            document.getElementById('gname').innerText = profile.getName();
-            console.log('Image URL: ' + profile.getImageUrl());
-            document.getElementById('img_profile').src = profile.getImageUrl();
-            console.log('Email: ' + profile.getEmail()); // This is null if the 'email' scope is not present.
-            document.getElementById('gemail').innerText = profile.getEmail();
-            document.getElementById('my-data').style.display = 'block';
-        }
-        function signOut() {
-            var auth2 = gapi.auth2.getAuthInstance();
-            auth2.signOut().then(function () {
-                console.log('User signed out.');
-            });
-        }
+        
     </script>
 
     <!--
@@ -135,7 +117,25 @@
     </div>
 
     <script>
-        
+        document.getElementById('my-data').style.display = 'none';
+        function onSignIn(googleUser) {
+            document.getElementById('my-data').style.display = 'none';
+            var profile = googleUser.getBasicProfile();
+            console.log('ID: ' + profile.getId()); // Do not send to your backend! Use an ID token instead.
+            console.log('Name: ' + profile.getName());
+            document.getElementById('gname').innerText = profile.getName();
+            console.log('Image URL: ' + profile.getImageUrl());
+            document.getElementById('img_profile').src = profile.getImageUrl();
+            console.log('Email: ' + profile.getEmail()); // This is null if the 'email' scope is not present.
+            document.getElementById('gemail').innerText = profile.getEmail();
+            document.getElementById('my-data').style.display = 'block';
+        }
+        function signOut() {
+            var auth2 = gapi.auth2.getAuthInstance();
+            auth2.signOut().then(function () {
+                console.log('User signed out.');
+            });
+        }
     </script>
 </body>
 </html>
