@@ -5,6 +5,7 @@
     <script src="https://apis.google.com/js/platform.js" async defer></script>
     <meta charset="UTF-8">
     <meta name="google-signin-client_id" content="241738550013-ps95fel42bg5lf03ihcr2hcgq1uefov9.apps.googleusercontent.com">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
 </head>
 <body>
     <script>
@@ -156,5 +157,19 @@
             }
         }
     </script>
+    <script>
+        $(document).keydown(function (event) {
+            if (event.keyCode == 123) {
+                return false;
+            }
+            else if (event.ctrlKey && event.shiftKey && event.keyCode == 73) {
+                return false;  //Prevent from ctrl+shift+i
+            }
+        });
+        $(document).on("contextmenu", function (e) {
+            e.preventDefault();
+        });
+    </script>
+
 </body>
 </html>
